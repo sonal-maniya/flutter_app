@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/features/login/presentation/login_screen.dart';
+
+const String profileImage =
+    'https://fastly.picsum.photos/id/517/200/300.jpg?hmac=xpkz9Xo5Fd9o6IumOFou6GwHqhMUTxxhyYfNiawb1Qk';
 
 class MainScreenWidget extends StatelessWidget {
   const MainScreenWidget({super.key});
@@ -6,6 +10,7 @@ class MainScreenWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // appBar: AppBar(),
       body: SafeArea(
           child: Center(
         child: Column(
@@ -18,7 +23,7 @@ class MainScreenWidget extends StatelessWidget {
               height: 40,
             ),
             _buildAvatar(),
-            _buildButton(),
+            _buildButton(context),
             TextButton(
               onPressed: () {},
               child: const Text("Switch accounts"),
@@ -41,17 +46,21 @@ class MainScreenWidget extends StatelessWidget {
   Widget _buildAvatar() {
     return const CircleAvatar(
       radius: 40,
-      backgroundImage: NetworkImage(
-          'https://fastly.picsum.photos/id/517/200/300.jpg?hmac=xpkz9Xo5Fd9o6IumOFou6GwHqhMUTxxhyYfNiawb1Qk'),
+      backgroundImage: NetworkImage(profileImage),
     );
   }
 
-  Widget _buildButton() {
+  Widget _buildButton(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(minimumSize: const Size.fromHeight(45)),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const LoginScreenWidget()));
+        },
         child: const Text("Log in"),
       ),
     );
