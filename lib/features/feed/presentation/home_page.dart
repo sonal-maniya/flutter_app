@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/features/feed/presentation/widgets/story_widget.dart';
 import 'package:flutter_app/widgets/logo.dart';
 
 class HomePageWidget extends StatefulWidget {
@@ -85,31 +86,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 14),
-                child: SizedBox(
-                  width: 70,
-                  child: Column(
-                    children: [
-                      CircleAvatar(
-                        backgroundImage:
-                            AssetImage("assets/images/img_story_back.png"),
-                        radius: 35,
-                        child: CircleAvatar(
-                          radius: 33,
-                          backgroundImage:
-                              AssetImage("assets/images/img_user.jpg"),
-                        ),
-                      ),
-                      Text(
-                        "karennne",
-                        style: TextStyle(
-                          color: Colors.black87,
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
-                  ),
-                ),
+                child: StoryWidget(),
               ),
             ],
           ),
