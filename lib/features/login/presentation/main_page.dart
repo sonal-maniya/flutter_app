@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/features/login/presentation/login_screen.dart';
 import 'package:flutter_app/routes/routing.dart';
 
 const String profileImage =
     'https://fastly.picsum.photos/id/517/200/300.jpg?hmac=xpkz9Xo5Fd9o6IumOFou6GwHqhMUTxxhyYfNiawb1Qk';
 
-class MainScreenWidget extends StatelessWidget {
-  const MainScreenWidget({super.key});
+class MainPageWidget extends StatelessWidget {
+  const MainPageWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

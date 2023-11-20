@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/app_constants.dart';
-import 'package:flutter_app/features/feed/presentation/home_screen.dart';
-import 'package:flutter_app/routes/routing.dart';
+import 'package:flutter_app/features/feed/presentation/home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginScreenWidget extends StatefulWidget {
-  const LoginScreenWidget({super.key});
+class LoginPageWidget extends StatefulWidget {
+  const LoginPageWidget({super.key});
 
   @override
-  State<LoginScreenWidget> createState() => _LoginScreenWidgetState();
+  State<LoginPageWidget> createState() => _LoginPageWidgetState();
 }
 
-class _LoginScreenWidgetState extends State<LoginScreenWidget> {
+class _LoginPageWidgetState extends State<LoginPageWidget> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool isValidUserName = true;
@@ -30,7 +29,7 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
       await pref.setBool(AppConstants.keyIsLoggedIn, true);
       Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => HomeScreenWidget()),
+          MaterialPageRoute(builder: (context) => HomePageWidget()),
           (route) => false);
     }
   }

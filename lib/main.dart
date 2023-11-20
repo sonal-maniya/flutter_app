@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/features/login/presentation/main_screen.dart';
 import 'package:flutter_app/routes/routing.dart';
 
 void main() {
@@ -16,7 +15,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.white,
       ),
-      // home: MainScreenWidget(),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: Routing.onGenerateRoute,
       initialRoute: Routing.initialPage,

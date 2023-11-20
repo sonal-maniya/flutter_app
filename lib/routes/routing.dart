@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/features/feed/presentation/home_screen.dart'
-    show HomeScreenWidget;
-import 'package:flutter_app/features/login/presentation/initial_screen.dart'
-    show InitialScreenWidget;
-import 'package:flutter_app/features/login/presentation/login_screen.dart'
-    show LoginScreenWidget;
-import 'package:flutter_app/features/login/presentation/main_screen.dart'
-    show MainScreenWidget;
+import 'package:flutter_app/features/feed/presentation/home_page.dart'
+    show HomePageWidget;
+import 'package:flutter_app/features/login/presentation/initial_page.dart'
+    show InitialPageWidget;
+import 'package:flutter_app/features/login/presentation/login_page.dart'
+    show LoginPageWidget;
+import 'package:flutter_app/features/login/presentation/main_page.dart'
+    show MainPageWidget;
 
 class Routing {
   static const String initialPage = '/';
@@ -18,16 +18,13 @@ class Routing {
     switch (settings.name) {
       case initialPage:
         return MaterialPageRoute(
-            builder: (context) => const InitialScreenWidget());
+            builder: (context) => const InitialPageWidget());
       case mainPage:
-        return MaterialPageRoute(
-            builder: (context) => const MainScreenWidget());
+        return MaterialPageRoute(builder: (context) => const MainPageWidget());
       case loginPage:
-        return MaterialPageRoute(
-            builder: (context) => const LoginScreenWidget());
+        return MaterialPageRoute(builder: (context) => const LoginPageWidget());
       case homePage:
-        return MaterialPageRoute(
-            builder: (context) => const HomeScreenWidget());
+        return MaterialPageRoute(builder: (context) => const HomePageWidget());
       default:
         throw Exception("Route not found");
     }

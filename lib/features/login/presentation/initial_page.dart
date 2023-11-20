@@ -5,14 +5,14 @@ import 'package:flutter_app/constants/app_constants.dart';
 import 'package:flutter_app/routes/routing.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class InitialScreenWidget extends StatefulWidget {
-  const InitialScreenWidget({super.key});
+class InitialPageWidget extends StatefulWidget {
+  const InitialPageWidget({super.key});
 
   @override
-  State<InitialScreenWidget> createState() => _InitialScreenWidgetState();
+  State<InitialPageWidget> createState() => _InitialPageWidgetState();
 }
 
-class _InitialScreenWidgetState extends State<InitialScreenWidget> {
+class _InitialPageWidgetState extends State<InitialPageWidget> {
   @override
   void initState() {
     super.initState();
