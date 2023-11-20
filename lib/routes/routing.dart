@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/route_constants.dart';
-import 'package:flutter_app/features/feed/presentation/home_page.dart'
-    show HomePageWidget;
+import 'package:flutter_app/features/feed/presentation/app_tab_page.dart'
+    show AppTabWidget;
 import 'package:flutter_app/features/login/presentation/initial_page.dart'
     show InitialPageWidget;
 import 'package:flutter_app/features/login/presentation/login_page.dart'
@@ -19,8 +19,8 @@ class Routing {
         return MaterialPageRoute(builder: (context) => const MainPageWidget());
       case RouteConstants.loginPage:
         return MaterialPageRoute(builder: (context) => const LoginPageWidget());
-      case RouteConstants.homePage:
-        return MaterialPageRoute(builder: (context) => const HomePageWidget());
+      case RouteConstants.appTabPage:
+        return MaterialPageRoute(builder: (context) => const AppTabWidget());
       default:
         throw Exception("Route not found");
     }

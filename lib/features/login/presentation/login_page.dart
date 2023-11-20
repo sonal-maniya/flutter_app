@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:flutter_app/constants/app_constants.dart';
-import 'package:flutter_app/features/feed/presentation/home_page.dart';
+import 'package:flutter_app/features/feed/presentation/app_tab_page.dart';
 import 'package:flutter_app/features/login/presentation/widgets/footer.dart';
 
 class LoginPageWidget extends StatefulWidget {
@@ -31,7 +31,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
       await pref.setBool(AppConstants.keyIsLoggedIn, true);
       Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => HomePageWidget()),
+          MaterialPageRoute(builder: (context) => AppTabWidget()),
           (route) => false);
     }
   }
