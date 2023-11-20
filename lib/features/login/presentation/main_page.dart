@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/constants/route_constants.dart';
 import 'package:flutter_app/features/login/presentation/widgets/footer.dart';
 import 'package:flutter_app/features/login/presentation/widgets/logo.dart';
-import 'package:flutter_app/routes/routing.dart';
-
-const String profileImage =
-    'https://fastly.picsum.photos/id/517/200/300.jpg?hmac=xpkz9Xo5Fd9o6IumOFou6GwHqhMUTxxhyYfNiawb1Qk';
+import 'package:flutter_app/utils/images.dart';
 
 class MainPageWidget extends StatelessWidget {
   const MainPageWidget({super.key});
@@ -41,7 +39,7 @@ class MainPageWidget extends StatelessWidget {
   Widget _buildAvatar() {
     return const CircleAvatar(
       radius: 40,
-      backgroundImage: NetworkImage(profileImage),
+      backgroundImage: NetworkImage(StaticImages.profileImage),
     );
   }
 
@@ -51,7 +49,7 @@ class MainPageWidget extends StatelessWidget {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(minimumSize: const Size.fromHeight(45)),
         onPressed: () {
-          Navigator.pushNamed(context, Routing.loginPage);
+          Navigator.pushNamed(context, RouteConstants.loginPage);
         },
         child: const Text("Log in"),
       ),

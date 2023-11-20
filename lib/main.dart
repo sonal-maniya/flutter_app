@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/constants/route_constants.dart';
 import 'package:flutter_app/routes/routing.dart';
 
 void main() {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: Routing.onGenerateRoute,
-      initialRoute: Routing.initialPage,
+      initialRoute: RouteConstants.initialPage,
     );
   }
 }
