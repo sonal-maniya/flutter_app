@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/features/login/presentation/login_screen.dart';
+import 'package:flutter_app/routes/routing.dart';
 
 const String profileImage =
     'https://fastly.picsum.photos/id/517/200/300.jpg?hmac=xpkz9Xo5Fd9o6IumOFou6GwHqhMUTxxhyYfNiawb1Qk';
@@ -56,10 +57,7 @@ class MainScreenWidget extends StatelessWidget {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(minimumSize: const Size.fromHeight(45)),
         onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const LoginScreenWidget()));
+          Navigator.pushNamed(context, Routing.loginPage);
         },
         child: const Text("Log in"),
       ),
@@ -71,19 +69,21 @@ class MainScreenWidget extends StatelessWidget {
       decoration: const BoxDecoration(
         border: Border(
           top: BorderSide(
-            color: Colors.black26,
+            color: Colors.black12,
           ),
         ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text("Don't have account"),
+          const Text(
+            "Don't have account?",
+            style: TextStyle(color: Colors.black45),
+          ),
           TextButton(
             onPressed: () {},
             child: const Text(
               "Sign up.",
-              style: TextStyle(color: Colors.black),
             ),
           ),
         ],
