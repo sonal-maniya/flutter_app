@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/app_constants.dart';
 import 'package:flutter_app/features/feed/presentation/home_page.dart';
+import 'package:flutter_app/features/login/presentation/widgets/footer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPageWidget extends StatefulWidget {
@@ -153,31 +154,11 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
   Widget _buildOptions() {
     return Expanded(
       flex: 2,
-      child: Container(
-        margin: const EdgeInsets.only(bottom: 50),
-        decoration: const BoxDecoration(
-          border: Border(
-            top: BorderSide(
-              color: Colors.black12,
-            ),
-          ),
+      child: Padding(
+        padding: EdgeInsets.only(
+          bottom: const Size.fromHeight(50).height,
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Text(
-              "Don't have account?",
-              style: TextStyle(color: Colors.black45),
-            ),
-            TextButton(
-              onPressed: () {},
-              child: const Text(
-                "Sign up.",
-              ),
-            ),
-          ],
-        ),
+        child: const FooterWidget(),
       ),
     );
   }

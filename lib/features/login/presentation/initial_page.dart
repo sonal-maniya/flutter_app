@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/app_constants.dart';
+import 'package:flutter_app/features/login/presentation/widgets/logo.dart';
 import 'package:flutter_app/routes/routing.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -23,9 +24,7 @@ class _InitialPageWidgetState extends State<InitialPageWidget> {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Image(
-          image: AssetImage('assets/images/img_logo.png'),
-        ),
+        child: AppLogoWidget(),
       ),
     );
   }

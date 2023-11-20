@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/features/login/presentation/widgets/footer.dart';
+import 'package:flutter_app/features/login/presentation/widgets/logo.dart';
 import 'package:flutter_app/routes/routing.dart';
 
 const String profileImage =
@@ -18,7 +20,7 @@ class MainPageWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Spacer(),
-            _buildHeader(),
+            const AppLogoWidget(),
             const SizedBox(
               height: 40,
             ),
@@ -29,17 +31,10 @@ class MainPageWidget extends StatelessWidget {
               child: const Text("Switch accounts"),
             ),
             const Spacer(),
-            _buildFooter(),
+            const FooterWidget(),
           ],
         ),
       )),
-    );
-  }
-
-  Widget _buildHeader() {
-    return const Image(
-      image: AssetImage('assets/images/img_logo.png'),
-      height: 50,
     );
   }
 
@@ -59,33 +54,6 @@ class MainPageWidget extends StatelessWidget {
           Navigator.pushNamed(context, Routing.loginPage);
         },
         child: const Text("Log in"),
-      ),
-    );
-  }
-
-  Widget _buildFooter() {
-    return Container(
-      decoration: const BoxDecoration(
-        border: Border(
-          top: BorderSide(
-            color: Colors.black12,
-          ),
-        ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text(
-            "Don't have account?",
-            style: TextStyle(color: Colors.black45),
-          ),
-          TextButton(
-            onPressed: () {},
-            child: const Text(
-              "Sign up.",
-            ),
-          ),
-        ],
       ),
     );
   }
