@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/constants/app_constants.dart';
 import 'package:flutter_app/features/feed/presentation/home_screen.dart';
 import 'package:flutter_app/routes/routing.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -23,13 +24,14 @@ class _LoginScreenWidgetState extends State<LoginScreenWidget> {
       isValidUserName = username.isNotEmpty;
       isValidPassword = password.isNotEmpty;
     });
-    debugPrint("${isValidUserName} isValidUserName");
-    debugPrint("${isValidPassword} isValidPassword");
     if (username.isNotEmpty && password.isNotEmpty) {
       final SharedPreferences pref = await SharedPreferences.getInstance();
-      await pref.setString("username", username);
-      await pref.setString("password", password);
-      // Navigator.repl(context, Routing.homePage);
+      await pref.setString(AppConstants.keyLoginUsername, username);
+      await pref.setBool(AppConstants.keyIsLoggedIn, true);
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => HomeScreenWidget()),
+          (route) => false);
     }
   }
 
