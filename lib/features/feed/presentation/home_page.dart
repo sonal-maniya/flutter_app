@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/features/feed/presentation/widgets/post_footer.dart';
+import 'package:flutter_app/features/feed/presentation/widgets/post_header.dart';
 import 'package:flutter_app/features/feed/presentation/widgets/story_widget.dart';
 import 'package:flutter_app/widgets/logo.dart';
 
@@ -20,6 +22,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           children: [
             _buildStoryList(),
             const Divider(),
+            _buildFeedList(),
           ],
         ),
       ),
@@ -92,6 +95,24 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildFeedList() {
+    return Column(
+      children: List.generate(
+          20,
+          (index) => Column(
+                children: [
+                  // Post Header
+                  const PostHeaderWidget(),
+                  // Post Image
+                  Image.asset("assets/images/img_post.jpg"),
+                  // Post Footer
+                  const PostFooterWidget(),
+                  const Divider(),
+                ],
+              )),
     );
   }
 }
