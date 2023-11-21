@@ -1,33 +1,30 @@
 import 'package:flutter/material.dart';
 
 class PageIndicatorWidget extends StatelessWidget {
-  final double indicatorSize = 5;
-  const PageIndicatorWidget({super.key});
+  final int currentPage;
+  final int totalPages;
+  final double indicatorSize = 4;
+  final Color selectedIndicatorColor = const Color.fromARGB(255, 3, 186, 237);
+  final Color indicatorColor = Color.fromARGB(255, 194, 193, 193);
+
+  PageIndicatorWidget(
+      {Key? super.key, this.currentPage = 0, this.totalPages = 2});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        CircleAvatar(
-          radius: indicatorSize,
-          backgroundColor: Colors.amber,
-        ),
-        SizedBox(
-          width: 4,
-        ),
-        CircleAvatar(
-          radius: 4,
-          backgroundColor: Colors.amber,
-        ),
-        SizedBox(
-          width: 4,
-        ),
-        CircleAvatar(
-          radius: 4,
-          backgroundColor: Colors.amber,
-        )
-      ],
+      children: List.generate(
+          totalPages,
+          (index) => Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 2),
+                child: CircleAvatar(
+                  radius: indicatorSize,
+                  backgroundColor: index == currentPage
+                      ? selectedIndicatorColor
+                      : indicatorColor,
+                ),
+              )),
     );
   }
 }

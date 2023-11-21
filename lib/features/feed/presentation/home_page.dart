@@ -112,7 +112,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             PostHeaderWidget(),
             // Post Image
             PostImageWidget(
-              imageCount: 2,
+              imageCount: 3,
             ),
             // Post Footer
             PostFooterWidget(),

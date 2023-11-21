@@ -10,6 +10,14 @@ class PostImageWidget extends StatefulWidget {
 }
 
 class _PostImageWidgetState extends State<PostImageWidget> {
+  int currentPage = 0;
+
+  void _onPageChanged(int index) {
+    setState(() {
+      currentPage = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     if (0 == 1) {
@@ -22,33 +30,37 @@ class _PostImageWidgetState extends State<PostImageWidget> {
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.width,
           child: PageView(
-            onPageChanged: (index) => {print("${index}")},
+            onPageChanged: _onPageChanged,
             allowImplicitScrolling: true,
             scrollDirection: Axis.horizontal,
-            children: [
-              Container(
-                color: const Color.fromRGBO(242, 244, 244, 1),
-                child: Image.asset(
-                  "assets/images/img_post.jpg",
-                  scale: 1,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Image.asset(
-                "assets/images/img_post.jpg",
-                fit: BoxFit.cover,
-              ),
-            ],
+            children: List.generate(
+              widget.imageCount,
+              (index) => _buildImageWidget(),
+            ),
           ),
         ),
-        const Positioned(
+        Positioned(
           left: 0,
           right: 0,
           bottom: -30,
           height: 10,
-          child: PageIndicatorWidget(),
+          child: PageIndicatorWidget(
+            currentPage: currentPage,
+            totalPages: widget.imageCount,
+          ),
         )
       ],
+    );
+  }
+
+  Widget _buildImageWidget() {
+    return Container(
+      color: const Color.fromRGBO(242, 244, 244, 1),
+      child: Image.asset(
+        "assets/images/img_post.jpg",
+        scale: 1,
+        fit: BoxFit.cover,
+      ),
     );
   }
 }
