@@ -6,7 +6,9 @@ class PostHeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 15, top: 5),
+      padding: const EdgeInsets.only(
+        left: 15,
+      ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -46,7 +48,7 @@ class PostHeaderWidget extends StatelessWidget {
           const Spacer(),
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.more_vert),
+            icon: const Icon(Icons.more_horiz_outlined),
           )
         ],
       ),
