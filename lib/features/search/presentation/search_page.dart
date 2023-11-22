@@ -18,7 +18,9 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
           children: [
             _buildSearchBar(),
             FilterTypeList(),
-            PostGridList(),
+            Expanded(
+              child: PostGridList(),
+            ),
           ],
         ),
       ),
