@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_app/features/feed/presentation/widgets/post_detail_text.dart';
 import 'package:flutter_app/features/feed/presentation/widgets/post_footer.dart';
 import 'package:flutter_app/features/feed/presentation/widgets/post_header.dart';
@@ -20,17 +21,22 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildTopBar(),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            _buildStoryList(),
-            const Divider(),
-            _buildFeedList(),
-          ],
+      body: RefreshIndicator(
+        onRefresh: _onRefresh,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              _buildStoryList(),
+              const Divider(),
+              _buildFeedList(),
+            ],
+          ),
         ),
       ),
     );
   }
+
+  Future<void> _onRefresh() async {}
 
   AppBar _buildTopBar() {
     return AppBar(

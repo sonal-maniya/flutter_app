@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:flutter_app/constants/app_constants.dart';
-import 'package:flutter_app/features/feed/presentation/app_tab_page.dart';
+import 'package:flutter_app/features/appTab/app_tab_page.dart';
 import 'package:flutter_app/features/login/presentation/widgets/footer.dart';
 
 class LoginPageWidget extends StatefulWidget {
@@ -18,7 +18,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
   bool isValidUserName = true;
   bool isValidPassword = true;
 
-  Future<void> _onLoginPress(BuildContext context) async {
+  Future<void> _onLoginPress(context) async {
     String username = emailController.text;
     String password = passwordController.text;
     setState(() {
@@ -31,7 +31,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
       await pref.setBool(AppConstants.keyIsLoggedIn, true);
       Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => AppTabWidget()),
+          MaterialPageRoute(builder: (context) => const AppTabWidget()),
           (route) => false);
     }
   }
@@ -141,7 +141,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
     );
   }
 
-  Widget _buildButton(BuildContext context) {
+  Widget _buildButton(context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
       child: ElevatedButton(

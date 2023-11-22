@@ -9,12 +9,14 @@ class StoryWidget extends StatelessWidget {
       width: 70,
       child: Column(
         children: [
-          CircleAvatar(
-            backgroundImage: AssetImage("assets/images/img_story_back.png"),
-            radius: 35,
+          InkWell(
             child: CircleAvatar(
-              radius: 31,
-              backgroundImage: AssetImage("assets/images/img_user.jpg"),
+              backgroundImage: AssetImage("assets/images/img_story_back.png"),
+              radius: 35,
+              child: CircleAvatar(
+                radius: 31,
+                backgroundImage: AssetImage("assets/images/img_user.jpg"),
+              ),
             ),
           ),
           Text(

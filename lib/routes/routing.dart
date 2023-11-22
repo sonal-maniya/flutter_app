@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/route_constants.dart';
-import 'package:flutter_app/features/feed/presentation/app_tab_page.dart'
+import 'package:flutter_app/features/appTab/app_tab_page.dart'
     show AppTabWidget;
 import 'package:flutter_app/features/login/presentation/initial_page.dart'
     show InitialPageWidget;
