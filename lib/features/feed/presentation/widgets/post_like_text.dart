@@ -23,7 +23,7 @@ class PostLikeTextWidget extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           TextSpan(
-            text: "others",
+            text: " others",
           ),
         ],
       ),

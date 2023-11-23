@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/route_constants.dart';
+import 'package:flutter_app/features/appPost/presentation/add_post_page.dart';
 import 'package:flutter_app/features/feed/presentation/home_page.dart';
+import 'package:flutter_app/features/list/presentation/list_page.dart';
+import 'package:flutter_app/features/profile/presentation/profile_page.dart';
 import 'package:flutter_app/features/search/presentation/search_page.dart';
 
 class AppTabWidget extends StatefulWidget {
@@ -23,9 +26,9 @@ class _AppTabWidgetState extends State<AppTabWidget> {
   final List<Widget> pages = [
     HomePageWidget(),
     SearchPageWidget(),
-    HomePageWidget(),
-    HomePageWidget(),
-    HomePageWidget(),
+    AddPostPageWidget(),
+    ListPageWidget(),
+    ProfilePageWidget(),
   ];
 
   @override

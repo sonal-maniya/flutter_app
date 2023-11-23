@@ -20,7 +20,7 @@ class _PostImageWidgetState extends State<PostImageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (0 == 1) {
+    if (widget.imageCount == 1) {
       return Image.asset("assets/images/img_post.jpg");
     }
     return Stack(

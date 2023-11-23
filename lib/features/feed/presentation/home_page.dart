@@ -21,18 +21,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildTopBar(),
-      body: RefreshIndicator(
-        onRefresh: _onRefresh,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              _buildStoryList(),
-              const Divider(),
-              _buildFeedList(),
-            ],
-          ),
-        ),
-      ),
+      body:
+          RefreshIndicator(onRefresh: _onRefresh, child: _buildFeedListView()),
     );
   }
 
@@ -105,6 +95,40 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         ),
       ),
     );
+  }
+
+  Widget _buildFeedListView() {
+    return ListView.builder(
+        itemCount: 100,
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        addAutomaticKeepAlives: true,
+        cacheExtent: 100,
+        itemBuilder: (context, index) {
+          return Column(
+            key: Key('column_$index'),
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Post Header
+              const PostHeaderWidget(),
+              // Post Image
+              PostImageWidget(
+                imageCount: 3,
+                key: Key('column_$index'),
+              ),
+              // Post Footer
+              const PostFooterWidget(),
+              const Padding(
+                padding: EdgeInsets.only(left: 15, right: 15),
+                child: PostLikeTextWidget(),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                child: PostDetailTextWidget(),
+              ),
+              const Divider(),
+            ],
+          );
+        });
   }
 
   Widget _buildFeedList() {
