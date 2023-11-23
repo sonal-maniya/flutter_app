@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/route_constants.dart';
 import 'package:flutter_app/features/appTab/app_tab_page.dart'
     show AppTabWidget;
+import 'package:flutter_app/features/list/presentation/list_page.dart'
+    show ListPageWidget;
 import 'package:flutter_app/features/login/presentation/initial_page.dart'
     show InitialPageWidget;
 import 'package:flutter_app/features/login/presentation/login_page.dart'
@@ -21,6 +23,8 @@ class Routing {
         return MaterialPageRoute(builder: (context) => const LoginPageWidget());
       case RouteConstants.appTabPage:
         return MaterialPageRoute(builder: (context) => const AppTabWidget());
+      case RouteConstants.listPage:
+        return MaterialPageRoute(builder: (context) => const ListPageWidget());
       default:
         throw Exception("Route not found");
     }

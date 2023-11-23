@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/constants/route_constants.dart';
 
 import 'package:flutter_app/features/feed/presentation/widgets/post_detail_text.dart';
 import 'package:flutter_app/features/feed/presentation/widgets/post_footer.dart';
@@ -21,8 +22,17 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildTopBar(),
-      body:
-          RefreshIndicator(onRefresh: _onRefresh, child: _buildFeedListView()),
+      body: RefreshIndicator(
+        onRefresh: _onRefresh,
+        child: Column(
+          children: [
+            _buildStoryList(),
+            Expanded(
+              child: _buildFeedListView(),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -51,7 +61,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       children: [
         IconButton(
           icon: const Icon(Icons.tv_rounded),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, RouteConstants.listPage);
+          },
         ),
         const Positioned(
           top: 10,
