@@ -27,6 +27,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         child: Column(
           children: [
             _buildStoryList(),
+            const Divider(indent: 0),
             Expanded(
               child: _buildFeedListView(),
             ),

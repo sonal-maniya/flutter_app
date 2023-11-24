@@ -8,7 +8,6 @@ Future<List<Post>> fetchPost() async {
   final response = await http.get(
     Uri.parse('https://jsonplaceholder.typicode.com/posts'),
   );
-
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
     // then parse the JSON.
@@ -16,7 +15,6 @@ Future<List<Post>> fetchPost() async {
     List<Post> posts = jsonResponse
         .map((postJson) => Post.fromJson(postJson as Map<String, dynamic>))
         .toList();
-
     return posts;
   } else {
     // If the server did not return a 200 OK response,

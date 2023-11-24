@@ -48,7 +48,7 @@ class _PostImageWidgetState extends State<PostImageWidget> {
             currentPage: currentPage,
             totalPages: widget.imageCount,
           ),
-        )
+        ),
       ],
     );
   }
