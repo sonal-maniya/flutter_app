@@ -3,14 +3,19 @@ import 'package:flutter_app/features/feed/presentation/widgets/page_indicator.da
 
 class PostImageWidget extends StatefulWidget {
   final int imageCount;
+
   const PostImageWidget({Key? super.key, this.imageCount = 1});
 
   @override
   State<PostImageWidget> createState() => _PostImageWidgetState();
 }
 
-class _PostImageWidgetState extends State<PostImageWidget> {
+class _PostImageWidgetState extends State<PostImageWidget>
+    with AutomaticKeepAliveClientMixin {
   int currentPage = 0;
+
+  @override
+  bool get wantKeepAlive => true;
 
   void _onPageChanged(int index) {
     setState(() {
@@ -42,7 +47,7 @@ class _PostImageWidgetState extends State<PostImageWidget> {
         Positioned(
           left: 0,
           right: 0,
-          bottom: -30,
+          bottom: -28,
           height: 10,
           child: PageIndicatorWidget(
             currentPage: currentPage,

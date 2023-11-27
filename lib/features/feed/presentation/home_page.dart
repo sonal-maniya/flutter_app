@@ -117,28 +117,26 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         addAutomaticKeepAlives: true,
         cacheExtent: 100,
         itemBuilder: (context, index) {
-          return Column(
-            key: Key('column_$index'),
+          return const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Post Header
-              const PostHeaderWidget(),
+              PostHeaderWidget(),
               // Post Image
               PostImageWidget(
-                imageCount: 3,
-                key: Key('column_$index'),
+                imageCount: 4,
               ),
               // Post Footer
-              const PostFooterWidget(),
-              const Padding(
+              PostFooterWidget(),
+              Padding(
                 padding: EdgeInsets.only(left: 15, right: 15),
                 child: PostLikeTextWidget(),
               ),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                 child: PostDetailTextWidget(),
               ),
-              const Divider(),
+              Divider(),
             ],
           );
         });
