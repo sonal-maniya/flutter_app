@@ -24,14 +24,18 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       appBar: _buildTopBar(),
       body: RefreshIndicator(
         onRefresh: _onRefresh,
-        child: Column(
-          children: [
-            _buildStoryList(),
-            const Divider(indent: 0),
-            Expanded(
-              child: _buildFeedListView(),
-            ),
-          ],
+        child: SingleChildScrollView(
+          physics: ScrollPhysics(),
+          child: Column(
+            children: [
+              _buildStoryList(),
+              const Divider(indent: 0),
+              _buildFeedListView()
+              // Expanded(
+              //   child: _buildFeedListView(),
+              // ),
+            ],
+          ),
         ),
       ),
     );
@@ -112,6 +116,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
   Widget _buildFeedListView() {
     return ListView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
         itemCount: 100,
         padding: const EdgeInsets.symmetric(vertical: 10),
         addAutomaticKeepAlives: true,
