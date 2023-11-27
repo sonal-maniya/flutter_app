@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/features/list/presentation/controller/list_controller.dart';
 import 'package:flutter_app/modal/post_modal.dart';
+import 'package:flutter_app/services/api.dart';
 
 class ListPageWidget extends StatefulWidget {
   const ListPageWidget({super.key});
@@ -11,11 +12,13 @@ class ListPageWidget extends StatefulWidget {
 
 class _ListPageWidgetState extends State<ListPageWidget> {
   late Future<List<Post>> futurePost;
+  final ApiClient apiClient = ApiClient();
+  final ListDataManager listDataManager = ListDataManager();
 
   @override
   void initState() {
     super.initState();
-    futurePost = fetchPost();
+    futurePost = listDataManager.fetchPost();
   }
 
   @override

@@ -21,7 +21,6 @@ class Post {
   }
 
   factory Post.fromJson1(Map<String, dynamic> json) {
-    print(json);
     return switch (json) {
       {
         'userId': int userId,
