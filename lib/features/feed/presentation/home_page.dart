@@ -25,15 +25,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       body: RefreshIndicator(
         onRefresh: _onRefresh,
         child: SingleChildScrollView(
-          physics: ScrollPhysics(),
+          physics: const ScrollPhysics(),
           child: Column(
             children: [
               _buildStoryList(),
               const Divider(indent: 0),
               _buildFeedListView()
-              // Expanded(
-              //   child: _buildFeedListView(),
-              // ),
             ],
           ),
         ),
