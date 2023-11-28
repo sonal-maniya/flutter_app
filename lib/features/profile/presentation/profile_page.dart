@@ -1,10 +1,31 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/app_constants.dart';
 import 'package:flutter_app/features/login/presentation/main_page.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ProfilePageWidget extends StatelessWidget {
+class ProfilePageWidget extends StatefulWidget {
   const ProfilePageWidget({super.key});
+
+  @override
+  State<ProfilePageWidget> createState() => _ProfilePageWidgetState();
+}
+
+class _ProfilePageWidgetState extends State<ProfilePageWidget> {
+  File? profileImage;
+
+  Future pickImage() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (image == null) return;
+      final imgTmp = File(image.path);
+      setState(() {
+        profileImage = imgTmp;
+      });
+    } catch (e) {}
+  }
 
   Future<void> onLogout(context) async {
     var pref = await SharedPreferences.getInstance();
@@ -29,13 +50,26 @@ class ProfilePageWidget extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const CircleAvatar(
+                    CircleAvatar(
                       backgroundColor: Color.fromARGB(255, 231, 227, 227),
                       radius: 45,
                       child: CircleAvatar(
-                        backgroundImage:
-                            AssetImage("assets/images/img_user.jpg"),
                         radius: 40,
+                        child: ClipOval(
+                          child: SizedBox(
+                            height: 80,
+                            width: 80,
+                            child: profileImage != null
+                                ? Image.file(
+                                    profileImage!,
+                                    fit: BoxFit.cover,
+                                  )
+                                : Image.asset(
+                                    "assets/images/img_user.jpg",
+                                    fit: BoxFit.cover,
+                                  ),
+                          ),
+                        ),
                       ),
                     ),
                     _buildPostCount(50, 'Post'),
@@ -53,7 +87,9 @@ class ProfilePageWidget extends StatelessWidget {
                   style: OutlinedButton.styleFrom(
                     minimumSize: const Size.fromHeight(40),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    pickImage();
+                  },
                   child: const Text(
                     "Edit Profile",
                     style: TextStyle(color: Colors.black),
@@ -61,6 +97,7 @@ class ProfilePageWidget extends StatelessWidget {
                 ),
               ),
               _buildHighlight(),
+              const Divider(),
               OutlinedButton(
                 style: OutlinedButton.styleFrom(
                   side: const BorderSide(width: 1.0, color: Colors.grey),
@@ -93,28 +130,32 @@ class ProfilePageWidget extends StatelessWidget {
   }
 
   Widget _buildHightContainer({bool isAdd = false}) {
-    return Column(
-      children: [
-        CircleAvatar(
-          backgroundColor: const Color.fromARGB(255, 231, 227, 227),
-          radius: 40,
-          child: CircleAvatar(
-            backgroundColor: Colors.grey[100],
-            backgroundImage:
-                !isAdd ? const AssetImage("assets/images/img_user.jpg") : null,
-            radius: 35,
-            child: isAdd
-                ? const Icon(
-                    Icons.add,
-                    color: Colors.black,
-                    size: 35,
-                  )
-                : null,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      child: Column(
+        children: [
+          CircleAvatar(
+            backgroundColor: const Color.fromARGB(255, 231, 227, 227),
+            radius: 40,
+            child: CircleAvatar(
+              backgroundColor: Colors.grey[100],
+              backgroundImage: !isAdd
+                  ? const AssetImage("assets/images/img_user.jpg")
+                  : null,
+              radius: 35,
+              child: isAdd
+                  ? const Icon(
+                      Icons.add,
+                      color: Colors.black,
+                      size: 35,
+                    )
+                  : null,
+            ),
           ),
-        ),
-        const SizedBox(height: 5),
-        Text(isAdd ? "New" : "Friends"),
-      ],
+          const SizedBox(height: 5),
+          Text(isAdd ? "New" : "Friends"),
+        ],
+      ),
     );
   }
 
