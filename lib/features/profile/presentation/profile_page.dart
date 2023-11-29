@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/app_constants.dart';
 import 'package:flutter_app/features/login/presentation/main_page.dart';
+import 'package:flutter_app/features/profile/presentation/widgets/post_list_page.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -41,75 +42,73 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CircleAvatar(
-                      backgroundColor: Color.fromARGB(255, 231, 227, 227),
-                      radius: 45,
-                      child: CircleAvatar(
-                        radius: 40,
-                        child: ClipOval(
-                          child: SizedBox(
-                            height: 80,
-                            width: 80,
-                            child: profileImage != null
-                                ? Image.file(
-                                    profileImage!,
-                                    fit: BoxFit.cover,
-                                  )
-                                : Image.asset(
-                                    "assets/images/img_user.jpg",
-                                    fit: BoxFit.cover,
-                                  ),
-                          ),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CircleAvatar(
+                    backgroundColor: Color.fromARGB(255, 231, 227, 227),
+                    radius: 45,
+                    child: CircleAvatar(
+                      radius: 40,
+                      child: ClipOval(
+                        child: SizedBox(
+                          height: 80,
+                          width: 80,
+                          child: profileImage != null
+                              ? Image.file(
+                                  profileImage!,
+                                  fit: BoxFit.cover,
+                                )
+                              : Image.asset(
+                                  "assets/images/img_user.jpg",
+                                  fit: BoxFit.cover,
+                                ),
                         ),
                       ),
                     ),
-                    _buildPostCount(50, 'Post'),
-                    _buildPostCount(645, 'Followers'),
-                    _buildPostCount(523, 'Following'),
-                  ],
-                ),
-              ),
-              const Divider(),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 15,
-                ),
-                child: OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                    minimumSize: const Size.fromHeight(40),
                   ),
-                  onPressed: () {
-                    pickImage();
-                  },
-                  child: const Text(
-                    "Edit Profile",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                ),
+                  _buildPostCount(50, 'Post'),
+                  _buildPostCount(645, 'Followers'),
+                  _buildPostCount(523, 'Following'),
+                ],
               ),
-              _buildHighlight(),
-              const Divider(),
-              OutlinedButton(
+            ),
+            const Divider(),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 15,
+              ),
+              child: OutlinedButton(
                 style: OutlinedButton.styleFrom(
-                  side: const BorderSide(width: 1.0, color: Colors.grey),
+                  minimumSize: const Size.fromHeight(40),
                 ),
-                onPressed: () => onLogout(context),
+                onPressed: () {
+                  pickImage();
+                },
                 child: const Text(
-                  "Logout",
-                  style: TextStyle(color: Colors.redAccent),
+                  "Edit Profile",
+                  style: TextStyle(color: Colors.black),
                 ),
               ),
-            ],
-          ),
+            ),
+            _buildHighlight(),
+            const Divider(),
+            const Expanded(child: ProfilePostGridWidget()),
+            // OutlinedButton(
+            //   style: OutlinedButton.styleFrom(
+            //     side: const BorderSide(width: 1.0, color: Colors.grey),
+            //   ),
+            //   onPressed: () => onLogout(context),
+            //   child: const Text(
+            //     "Logout",
+            //     style: TextStyle(color: Colors.redAccent),
+            //   ),
+            // ),
+          ],
         ),
       ),
     );
