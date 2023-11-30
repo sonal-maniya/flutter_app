@@ -19,33 +19,27 @@ class _ProfilePostGridWidgetState extends State<ProfilePostGridWidget>
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: 1,
-      child: Column(
-        children: [
-          TabBar(
-            controller: _tabController,
-            indicatorColor: Colors.grey,
-            tabs: const [
-              Tab(
-                icon: Icon(Icons.grid_3x3_rounded),
-              ),
-              Tab(
-                icon: Icon(Icons.person_2_outlined),
-              ),
-            ],
-          ),
-          Expanded(
-            child: TabBarView(
-              controller: _tabController,
-              children: [
-                _renderGrid(),
-                _renderGrid(),
-              ],
+    return Column(
+      children: [
+        TabBar(
+          controller: _tabController,
+          tabs: const [
+            Tab(
+              icon: Icon(Icons.grid_3x3_rounded),
             ),
-          ),
-        ],
-      ),
+            Tab(
+              icon: Icon(Icons.person_2_outlined),
+            ),
+          ],
+        ),
+        TabBarView(
+          controller: _tabController,
+          children: [
+            _renderGrid(),
+            _renderGrid(),
+          ],
+        ),
+      ],
     );
   }
 

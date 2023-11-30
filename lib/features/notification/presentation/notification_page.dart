@@ -15,7 +15,6 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget>
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
-    print(_tabController);
   }
 
   @override

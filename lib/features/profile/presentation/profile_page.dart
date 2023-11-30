@@ -44,85 +44,96 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
       body: SafeArea(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CircleAvatar(
-                    backgroundColor: Color.fromARGB(255, 231, 227, 227),
-                    radius: 45,
-                    child: CircleAvatar(
-                      radius: 40,
-                      child: ClipOval(
-                        child: SizedBox(
-                          height: 80,
-                          width: 80,
-                          child: profileImage != null
-                              ? Image.file(
-                                  profileImage!,
-                                  fit: BoxFit.cover,
-                                )
-                              : Image.asset(
-                                  "assets/images/img_user.jpg",
-                                  fit: BoxFit.cover,
-                                ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  _buildPostCount(50, 'Post'),
-                  _buildPostCount(645, 'Followers'),
-                  _buildPostCount(523, 'Following'),
-                ],
-              ),
-            ),
+            _buildHeader(),
             const Divider(),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 15,
-              ),
-              child: OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  minimumSize: const Size.fromHeight(40),
-                ),
-                onPressed: () {
-                  pickImage();
-                },
-                child: const Text(
-                  "Edit Profile",
-                  style: TextStyle(color: Colors.black),
-                ),
-              ),
-            ),
+            _buildEditButton(),
             _buildHighlight(),
             const Divider(),
-            const Expanded(child: ProfilePostGridWidget()),
-            // OutlinedButton(
-            //   style: OutlinedButton.styleFrom(
-            //     side: const BorderSide(width: 1.0, color: Colors.grey),
-            //   ),
-            //   onPressed: () => onLogout(context),
-            //   child: const Text(
-            //     "Logout",
-            //     style: TextStyle(color: Colors.redAccent),
-            //   ),
-            // ),
+            const ProfilePostGridWidget(),
+            OutlinedButton(
+              style: OutlinedButton.styleFrom(
+                side: const BorderSide(width: 1.0, color: Colors.grey),
+              ),
+              onPressed: () => onLogout(context),
+              child: const Text(
+                "Logout",
+                style: TextStyle(color: Colors.redAccent),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildHighlight() {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      padding: const EdgeInsets.all(8.0),
+  Widget _buildEditButton() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 15,
+      ),
+      child: OutlinedButton(
+        style: OutlinedButton.styleFrom(
+          minimumSize: const Size.fromHeight(40),
+        ),
+        onPressed: () {
+          pickImage();
+        },
+        child: const Text(
+          "Edit Profile",
+          style: TextStyle(color: Colors.black),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildHeader() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: List.generate(
-          20,
-          (index) => _buildHightContainer(isAdd: index == 0 ? true : false),
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          CircleAvatar(
+            backgroundColor: Color.fromARGB(255, 231, 227, 227),
+            radius: 45,
+            child: CircleAvatar(
+              radius: 40,
+              child: ClipOval(
+                child: SizedBox(
+                  height: 80,
+                  width: 80,
+                  child: profileImage != null
+                      ? Image.file(
+                          profileImage!,
+                          fit: BoxFit.cover,
+                        )
+                      : Image.asset(
+                          "assets/images/img_user.jpg",
+                          fit: BoxFit.cover,
+                        ),
+                ),
+              ),
+            ),
+          ),
+          _buildPostCount(50, 'Post'),
+          _buildPostCount(645, 'Followers'),
+          _buildPostCount(523, 'Following'),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildHighlight() {
+    return SizedBox(
+      height: 120,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: List.generate(
+            20,
+            (index) => _buildHightContainer(isAdd: index == 0 ? true : false),
+          ),
         ),
       ),
     );
