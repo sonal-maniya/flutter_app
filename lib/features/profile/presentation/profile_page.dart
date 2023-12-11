@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/app_constants.dart';
 import 'package:flutter_app/features/login/presentation/main_page.dart';
+import 'package:flutter_app/features/profile/presentation/widgets/drawer_page.dart';
 import 'package:flutter_app/features/profile/presentation/widgets/post_list_page.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,6 +17,7 @@ class ProfilePageWidget extends StatefulWidget {
 
 class _ProfilePageWidgetState extends State<ProfilePageWidget> {
   File? profileImage;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   Future pickImage() async {
     try {
@@ -38,12 +40,19 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
         (route) => false);
   }
 
+  void openDrawer() {
+    _scaffoldKey.currentState?.openEndDrawer();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
+      endDrawer: const DrawerWidget(),
       body: SafeArea(
         child: Column(
           children: [
+            _buildMainBar(),
             _buildHeader(),
             const Divider(),
             _buildEditButton(),
@@ -62,6 +71,37 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildMainBar() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15),
+      child: Row(
+        children: [
+          const Spacer(),
+          const SizedBox(
+            width: 30,
+          ),
+          const Icon(
+            Icons.lock,
+            size: 15,
+          ),
+          const Text(" john_w "),
+          const Icon(
+            Icons.arrow_drop_down_outlined,
+            size: 25,
+          ),
+          const Spacer(),
+          IconButton(
+            onPressed: () => openDrawer(),
+            icon: const Icon(
+              Icons.list_sharp,
+              size: 30,
+            ),
+          )
+        ],
       ),
     );
   }
@@ -93,7 +133,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           CircleAvatar(
-            backgroundColor: Color.fromARGB(255, 231, 227, 227),
+            backgroundColor: const Color.fromARGB(255, 231, 227, 227),
             radius: 45,
             child: CircleAvatar(
               radius: 40,
