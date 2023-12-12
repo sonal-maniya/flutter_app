@@ -6,15 +6,19 @@ class DrawerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      width: 250,
       child: ListView(
         padding: const EdgeInsets.symmetric(
           horizontal: 15,
         ),
         children: [
-          const DrawerHeader(
-            padding: EdgeInsets.zero,
-            margin: EdgeInsets.zero,
-            child: Text("Profile Settings"),
+          const SizedBox(
+            height: 90,
+            child: DrawerHeader(
+              padding: EdgeInsets.zero,
+              margin: EdgeInsets.zero,
+              child: Text("Profile Settings"),
+            ),
           ),
           _buildItem(context, Icons.lock_clock_outlined, "Activity"),
           _buildItem(context, Icons.punch_clock_outlined, "Your Activity"),
@@ -36,7 +40,7 @@ class DrawerWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () => onTap(context),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(10.0),
         child: Row(
           children: [
             Icon(icon),
