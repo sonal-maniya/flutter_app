@@ -4,8 +4,10 @@ import 'package:flutter_app/routes/routing.dart';
 import 'package:flutter_app/stateManagement/provider/count_provider.dart';
 import 'package:flutter_app/stateManagement/provider/example_one_provider.dart';
 import 'package:flutter_app/stateManagement/provider/favourite_provider.dart';
+import 'package:flutter_app/stateManagement/provider/theme_provider.dart';
 import 'package:flutter_app/stateManagement/screen/count_example.dart';
 import 'package:flutter_app/stateManagement/screen/example_one.dart';
+import 'package:flutter_app/stateManagement/screen/favourite/dark_theme.dart';
 import 'package:flutter_app/stateManagement/screen/favourite/favourite_page.dart';
 import 'package:provider/provider.dart';
 
@@ -36,19 +38,31 @@ class MyProviderApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => CountProvider()),
-        ChangeNotifierProvider(create: (_) => ExampleOneProvider()),
-        ChangeNotifierProvider(create: (_) => FavoriteProvider()),
-      ],
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primaryColor: Colors.white,
-        ),
-        debugShowCheckedModeBanner: false,
-        home: const FavoritePageWidget(),
-      ),
-    );
+        providers: [
+          ChangeNotifierProvider(create: (_) => CountProvider()),
+          ChangeNotifierProvider(create: (_) => ExampleOneProvider()),
+          ChangeNotifierProvider(create: (_) => FavoriteProvider()),
+          ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ],
+        child: Builder(builder: (BuildContext context) {
+          final themeProvider = Provider.of<ThemeProvider>(context);
+          return MaterialApp(
+            title: 'Flutter Demo',
+            themeMode: themeProvider.themeMode,
+            theme: ThemeData(
+              primaryColor: Colors.white,
+              brightness: Brightness.light,
+              primarySwatch: Colors.amber,
+            ),
+            darkTheme: ThemeData(
+              brightness: Brightness.dark,
+              primaryColor: Colors.purple,
+              primarySwatch: Colors.blue,
+              appBarTheme: const AppBarTheme(backgroundColor: Colors.teal),
+            ),
+            debugShowCheckedModeBanner: false,
+            home: const DarkThemeScreen(),
+          );
+        }));
   }
 }
