@@ -3,8 +3,10 @@ import 'package:flutter_app/constants/route_constants.dart';
 import 'package:flutter_app/routes/routing.dart';
 import 'package:flutter_app/stateManagement/provider/count_provider.dart';
 import 'package:flutter_app/stateManagement/provider/example_one_provider.dart';
+import 'package:flutter_app/stateManagement/provider/favourite_provider.dart';
 import 'package:flutter_app/stateManagement/screen/count_example.dart';
 import 'package:flutter_app/stateManagement/screen/example_one.dart';
+import 'package:flutter_app/stateManagement/screen/favourite/favourite_page.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -37,6 +39,7 @@ class MyProviderApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => CountProvider()),
         ChangeNotifierProvider(create: (_) => ExampleOneProvider()),
+        ChangeNotifierProvider(create: (_) => FavoriteProvider()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -44,8 +47,7 @@ class MyProviderApp extends StatelessWidget {
           primaryColor: Colors.white,
         ),
         debugShowCheckedModeBanner: false,
-        // home: const CountWidget(),
-        home: const ExampleOneWidget(),
+        home: const FavoritePageWidget(),
       ),
     );
   }
