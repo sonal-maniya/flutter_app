@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_app/stateManagement/provider/count_provider.dart';
 import 'package:provider/provider.dart';
@@ -13,6 +15,10 @@ class _CountWidgetState extends State<CountWidget> {
   @override
   void initState() {
     super.initState();
+    final countProvider = Provider.of<CountProvider>(context, listen: false);
+    Timer.periodic(const Duration(seconds: 1), (timer) {
+      countProvider.setCounter();
+    });
   }
 
   @override
