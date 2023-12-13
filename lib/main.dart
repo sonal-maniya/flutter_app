@@ -9,6 +9,7 @@ import 'package:flutter_app/stateManagement/screen/count_example.dart';
 import 'package:flutter_app/stateManagement/screen/example_one.dart';
 import 'package:flutter_app/stateManagement/screen/favourite/dark_theme.dart';
 import 'package:flutter_app/stateManagement/screen/favourite/favourite_page.dart';
+import 'package:flutter_app/stateManagement/screen/favourite/value_notifier_page.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -61,7 +62,7 @@ class MyProviderApp extends StatelessWidget {
               appBarTheme: const AppBarTheme(backgroundColor: Colors.teal),
             ),
             debugShowCheckedModeBanner: false,
-            home: const DarkThemeScreen(),
+            home: ValueNotifierWidget(),
           );
         }));
   }
