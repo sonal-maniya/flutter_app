@@ -42,8 +42,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
   AppBar _buildTopBar() {
     return AppBar(
-      backgroundColor: const Color.fromARGB(255, 247, 246, 246),
-      foregroundColor: Colors.black,
       elevation: 1,
       centerTitle: true,
       title: const AppLogoWidget(height: 30),

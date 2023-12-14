@@ -21,9 +21,6 @@ class StoryWidget extends StatelessWidget {
           ),
           Text(
             "karennne",
-            style: TextStyle(
-              color: Colors.black87,
-            ),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),

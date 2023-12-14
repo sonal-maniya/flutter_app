@@ -6,6 +6,7 @@ import 'package:flutter_app/features/login/presentation/main_page.dart';
 import 'package:flutter_app/features/profile/presentation/widgets/drawer_page.dart';
 import 'package:flutter_app/features/profile/presentation/widgets/post_list_page.dart';
 import 'package:flutter_app/stateManagement/provider/login_provider.dart';
+import 'package:flutter_app/stateManagement/provider/theme_provider.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -78,7 +79,9 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
   }
 
   Widget _buildMainBar() {
+    final themeMode = Provider.of<ThemeProvider>(context);
     final loginProvider = Provider.of<LoginProvider>(context);
+    var isDark = themeMode.themeMode == ThemeMode.dark;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Row(
@@ -99,6 +102,17 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
             size: 25,
           ),
           const Spacer(),
+          Row(
+            children: [
+              const Text("Dark Theme"),
+              Switch(
+                value: isDark,
+                onChanged: (value) {
+                  themeMode.setTheme(isDark ? ThemeMode.light : ThemeMode.dark);
+                },
+              ),
+            ],
+          ),
           IconButton(
             onPressed: () => openDrawer(),
             icon: const Icon(

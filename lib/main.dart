@@ -23,19 +23,42 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (_) => LoginProvider()),
-          ChangeNotifierProvider(create: (_) => ThemeProvider()),
-        ],
-        child: MaterialApp(
+      providers: [
+        ChangeNotifierProvider(create: (_) => LoginProvider()),
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+      ],
+      child: Builder(builder: (context) {
+        final themeProvider = Provider.of<ThemeProvider>(context);
+        return MaterialApp(
           title: 'Flutter Demo',
+          themeMode: themeProvider.themeMode,
           theme: ThemeData(
-            primaryColor: Colors.white,
+              primaryColor: Colors.white,
+              brightness: Brightness.light,
+              primarySwatch: Colors.amber,
+              appBarTheme: const AppBarTheme(
+                  backgroundColor: Color.fromARGB(255, 247, 246, 246),
+                  foregroundColor: Colors.black),
+              primaryColorDark: Colors.black,
+              primaryColorLight: Colors.white,
+              canvasColor: Colors.white),
+          darkTheme: ThemeData(
+            brightness: Brightness.dark,
+            primaryColor: Colors.purple,
+            primarySwatch: Colors.blue,
+            appBarTheme: const AppBarTheme(
+                backgroundColor: Color.fromARGB(255, 45, 43, 43),
+                foregroundColor: Colors.white),
+            primaryColorDark: const Color.fromARGB(255, 45, 43, 43),
+            primaryColorLight: Colors.white,
+            canvasColor: const Color.fromARGB(255, 45, 43, 43),
           ),
           debugShowCheckedModeBanner: false,
           onGenerateRoute: Routing.onGenerateRoute,
           initialRoute: RouteConstants.initialPage,
-        ));
+        );
+      }),
+    );
   }
 }
 
