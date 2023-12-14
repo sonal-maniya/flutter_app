@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import 'package:flutter_app/constants/app_constants.dart';
+import 'package:flutter_app/stateManagement/provider/login_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_app/features/appTab/app_tab_page.dart';
 import 'package:flutter_app/features/login/presentation/widgets/footer.dart';
 
@@ -21,14 +20,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
   Future<void> _onLoginPress(context) async {
     String username = emailController.text;
     String password = passwordController.text;
+    final loginProvider = Provider.of<LoginProvider>(context, listen: false);
     setState(() {
       isValidUserName = username.isNotEmpty;
       isValidPassword = password.isNotEmpty;
     });
-    if (username.isNotEmpty && password.isNotEmpty) {
-      final SharedPreferences pref = await SharedPreferences.getInstance();
-      await pref.setString(AppConstants.keyLoginUsername, username);
-      await pref.setBool(AppConstants.keyIsLoggedIn, true);
+    var result = await loginProvider.login(username, password);
+    if (result) {
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (context) => const AppTabWidget()),

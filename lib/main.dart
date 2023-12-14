@@ -4,6 +4,7 @@ import 'package:flutter_app/routes/routing.dart';
 import 'package:flutter_app/stateManagement/provider/count_provider.dart';
 import 'package:flutter_app/stateManagement/provider/example_one_provider.dart';
 import 'package:flutter_app/stateManagement/provider/favourite_provider.dart';
+import 'package:flutter_app/stateManagement/provider/login_provider.dart';
 import 'package:flutter_app/stateManagement/provider/theme_provider.dart';
 import 'package:flutter_app/stateManagement/screen/count_example.dart';
 import 'package:flutter_app/stateManagement/screen/example_one.dart';
@@ -13,7 +14,7 @@ import 'package:flutter_app/stateManagement/screen/favourite/value_notifier_page
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyProviderApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -21,15 +22,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primaryColor: Colors.white,
-      ),
-      debugShowCheckedModeBanner: false,
-      onGenerateRoute: Routing.onGenerateRoute,
-      initialRoute: RouteConstants.initialPage,
-    );
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => LoginProvider()),
+          ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ],
+        child: MaterialApp(
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            primaryColor: Colors.white,
+          ),
+          debugShowCheckedModeBanner: false,
+          onGenerateRoute: Routing.onGenerateRoute,
+          initialRoute: RouteConstants.initialPage,
+        ));
   }
 }
 

@@ -5,7 +5,9 @@ import 'package:flutter_app/constants/app_constants.dart';
 import 'package:flutter_app/features/login/presentation/main_page.dart';
 import 'package:flutter_app/features/profile/presentation/widgets/drawer_page.dart';
 import 'package:flutter_app/features/profile/presentation/widgets/post_list_page.dart';
+import 'package:flutter_app/stateManagement/provider/login_provider.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfilePageWidget extends StatefulWidget {
@@ -76,6 +78,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
   }
 
   Widget _buildMainBar() {
+    final loginProvider = Provider.of<LoginProvider>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Row(
@@ -88,7 +91,9 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
             Icons.lock,
             size: 15,
           ),
-          const Text(" john_w "),
+          Consumer(builder: (context, value, child) {
+            return Text(" ${loginProvider.userName} ");
+          }),
           const Icon(
             Icons.arrow_drop_down_outlined,
             size: 25,
