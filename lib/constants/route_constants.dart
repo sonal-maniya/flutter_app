@@ -4,6 +4,7 @@ class RouteConstants {
   static const String loginPage = '/login-page';
   static const String appTabPage = '/app-tab-page';
   static const String listPage = '/list-page';
+  static const String postPage = '/post-page';
   static const String favoritePage = '/favorite-page';
 
 // Home page tab Constant

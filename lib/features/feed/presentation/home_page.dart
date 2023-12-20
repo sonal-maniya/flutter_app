@@ -84,7 +84,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         color: Colors.black,
       ),
       iconSize: 5,
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pushNamed(context, RouteConstants.postPage);
+      },
     );
   }
 
