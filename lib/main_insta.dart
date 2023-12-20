@@ -18,10 +18,6 @@ void main() {
   runApp(const MyApp());
 }
 
-void main1() {
-  runApp(const MyApp());
-}
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 

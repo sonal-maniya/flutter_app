@@ -7,18 +7,19 @@ import 'package:flutter_app/features/profile/presentation/widgets/drawer_page.da
 import 'package:flutter_app/features/profile/presentation/widgets/post_list_page.dart';
 import 'package:flutter_app/stateManagement/provider/login_provider.dart';
 import 'package:flutter_app/stateManagement/provider/theme_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ProfilePageWidget extends StatefulWidget {
+class ProfilePageWidget extends ConsumerStatefulWidget {
   const ProfilePageWidget({super.key});
 
   @override
-  State<ProfilePageWidget> createState() => _ProfilePageWidgetState();
+  ConsumerState<ProfilePageWidget> createState() => _ProfilePageWidgetState();
 }
 
-class _ProfilePageWidgetState extends State<ProfilePageWidget> {
+class _ProfilePageWidgetState extends ConsumerState<ProfilePageWidget> {
   File? profileImage;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -79,9 +80,10 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
   }
 
   Widget _buildMainBar() {
-    final themeMode = Provider.of<ThemeProvider>(context);
-    final loginProvider = Provider.of<LoginProvider>(context);
-    var isDark = themeMode.themeMode == ThemeMode.dark;
+    final theme = ref.watch(themeProvider);
+    // final loginProvider = Provider.of<LoginProvider>(context);
+    var isDark = theme == MyThemeType.dark;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Row(
@@ -94,9 +96,9 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
             Icons.lock,
             size: 15,
           ),
-          Consumer(builder: (context, value, child) {
-            return Text(" ${loginProvider.userName} ");
-          }),
+          // Consumer(builder: (context, value, child) {
+          //   return Text(" ${loginProvider.userName} ");
+          // }),
           const Icon(
             Icons.arrow_drop_down_outlined,
             size: 25,
@@ -108,7 +110,9 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
               Switch(
                 value: isDark,
                 onChanged: (value) {
-                  themeMode.setTheme(isDark ? ThemeMode.light : ThemeMode.dark);
+                  ref
+                      .read(themeProvider.notifier)
+                      .setTheme(isDark ? MyThemeType.light : MyThemeType.dark);
                 },
               ),
             ],
