@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+// Normal Provider
 class ThemeProvider with ChangeNotifier {
   var _themeMode = ThemeMode.light;
 

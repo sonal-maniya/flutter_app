@@ -10,7 +10,6 @@ void main() {
   runApp(
     ProviderScope(
       observers: [RiverpodLogger()],
-      // child: CounterPageApp(),
       child: Consumer(
         builder: (BuildContext context, WidgetRef ref, Widget? child) {
           final theme = ref.watch(themeProvider);
