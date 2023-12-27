@@ -25,7 +25,7 @@ class _ListPageWidgetState extends State<ListPageWidget> {
     futurePost = listDataManager.fetchPost();
     final config = Configuration.local([Car.schema, PostTable.schema]);
     realm = Realm(config);
-
+    print(config.path);
     // Car Example
     // final cars = <Car>[];
     // cars.addAll([
