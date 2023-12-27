@@ -7,8 +7,9 @@ part of 'post.dart';
 // **************************************************************************
 
 // ignore_for_file: type=lint
-class Post extends _Post with RealmEntity, RealmObjectBase, RealmObject {
-  Post(
+class PostTable extends _PostTable
+    with RealmEntity, RealmObjectBase, RealmObject {
+  PostTable(
     int userId,
     int id,
     String title,
@@ -20,7 +21,7 @@ class Post extends _Post with RealmEntity, RealmObjectBase, RealmObject {
     RealmObjectBase.set(this, 'description', description);
   }
 
-  Post._();
+  PostTable._();
 
   @override
   int get userId => RealmObjectBase.get<int>(this, 'userId') as int;
@@ -45,17 +46,17 @@ class Post extends _Post with RealmEntity, RealmObjectBase, RealmObject {
       RealmObjectBase.set(this, 'description', value);
 
   @override
-  Stream<RealmObjectChanges<Post>> get changes =>
-      RealmObjectBase.getChanges<Post>(this);
+  Stream<RealmObjectChanges<PostTable>> get changes =>
+      RealmObjectBase.getChanges<PostTable>(this);
 
   @override
-  Post freeze() => RealmObjectBase.freezeObject<Post>(this);
+  PostTable freeze() => RealmObjectBase.freezeObject<PostTable>(this);
 
   static SchemaObject get schema => _schema ??= _initSchema();
   static SchemaObject? _schema;
   static SchemaObject _initSchema() {
-    RealmObjectBase.registerFactory(Post._);
-    return const SchemaObject(ObjectType.realmObject, Post, 'Post', [
+    RealmObjectBase.registerFactory(PostTable._);
+    return const SchemaObject(ObjectType.realmObject, PostTable, 'PostTable', [
       SchemaProperty('userId', RealmPropertyType.int),
       SchemaProperty('id', RealmPropertyType.int),
       SchemaProperty('title', RealmPropertyType.string),

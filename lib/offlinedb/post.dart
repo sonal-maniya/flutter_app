@@ -2,9 +2,9 @@ import 'package:realm/realm.dart';
 part 'post.g.dart';
 
 @RealmModel()
-class _Post {
-  int userId;
-  int id;
-  String title;
-  String description;
+class _PostTable {
+  late int userId;
+  late int id;
+  late String title;
+  late String description;
 }

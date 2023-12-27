@@ -18,20 +18,21 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
   bool isValidPassword = true;
 
   Future<void> _onLoginPress(context) async {
-    String username = emailController.text;
-    String password = passwordController.text;
-    final loginProvider = Provider.of<LoginProvider>(context, listen: false);
-    setState(() {
-      isValidUserName = username.isNotEmpty;
-      isValidPassword = password.isNotEmpty;
-    });
-    var result = await loginProvider.login(username, password);
-    if (result) {
-      Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => const AppTabWidget()),
-          (route) => false);
-    }
+    // print("Login");
+    // String username = emailController.text;
+    // String password = passwordController.text;
+    // final loginProvider = Provider.of<LoginProvider>(context, listen: false);
+    // setState(() {
+    //   isValidUserName = username.isNotEmpty;
+    //   isValidPassword = password.isNotEmpty;
+    // });
+    // var result = await loginProvider.login(username, password);
+    // if (result) {
+    Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => const AppTabWidget()),
+        (route) => false);
+    // }
   }
 
   @override
